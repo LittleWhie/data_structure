@@ -60,6 +60,24 @@ void reverse_link(Link *l)
 	l->head->next = prev;
 }
 
+void recursive_reverse_link(Link *l)
+{
+	Node *p = recursive_reverse(l->head->next);
+	l->head->next->next = NULL;
+	l->head->next = p;
+}
+
+Node *recursive_reverse(Node *node)
+{
+	if (node == NULL || node->next == NULL)
+		return node;
+	
+	Node *p = recursive_reverse(node->next);
+	node->next->next = node;
+	
+	return p;
+}
+
 void print_link(Link *l)
 {
 	Node *node = l->head;
@@ -84,6 +102,8 @@ int main(void)
 	insert_link(&link, 7);
 	print_link(&link);
 	reverse_link(&link);
+	print_link(&link);
+	recursive_reverse_link(&link);
 	print_link(&link);
 
 	return 0;

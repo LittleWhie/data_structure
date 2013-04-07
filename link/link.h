@@ -16,6 +16,8 @@ int init_link(Link *l);
 Node *insert_link(Link *l, DataType data);
 Node *delete_link(Link *l, DataType data);
 void reverse_link(Link *l);
+Node *recursive_reverse(Node *n);
+void recursive_reverse_link(Link *l);
 void print_link(Link *l);
 
 #endif
