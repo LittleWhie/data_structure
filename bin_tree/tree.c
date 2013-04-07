@@ -67,24 +67,35 @@ Node *delete_tree(Tree *tree, DataType data)
 		else
 			node = node->rchild;
 	}
+	
 	if (node == NULL)
 		return NULL;
+	
+	//确定要被删除的节点
 	if (node->lchild == NULL || node->rchild == NULL)
 		to_delete = node;
 	else
 		to_delete = successor_tree(node);
+	
+	//确定被删除节点的子节点
 	if (to_delete->lchild != NULL)
 		child = to_delete->lchild;
 	else
 		child = to_delete->rchild;
+	
+	//如果有子节点，让子节点的父节点指针指向自己的父节点
 	if (child != NULL)
 		child->parent = to_delete->parent;
+	
+	//删除自己
 	if (to_delete->parent == NULL)
 		tree->root = child;
 	else if (to_delete->parent->lchild == to_delete)
 		to_delete->parent->lchild = child;
 	else
 		to_delete->parent->rchild = child;
+	
+	//如果是有删除后继节点的情况，则要把后继节点的数值复制给自己
 	if (to_delete != node)
 		node->data = to_delete->data;
 

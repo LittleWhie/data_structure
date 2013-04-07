@@ -100,10 +100,10 @@ int main(void)
 	insert_link(&link, 5);
 	insert_link(&link, 6);
 	insert_link(&link, 7);
+	print_link(&link);      //打印链表
+	reverse_link(&link);    //非递归转置链表
 	print_link(&link);
-	reverse_link(&link);
-	print_link(&link);
-	recursive_reverse_link(&link);
+	recursive_reverse_link(&link);   //递归转置链表
 	print_link(&link);
 
 	return 0;
