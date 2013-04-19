@@ -111,6 +111,18 @@ void in_order_traverse_tree(Node *node)
 	in_order_traverse_tree(node->rchild);
 }
 
+int count = 0;
+void find_k_max(Node *node, int k)
+{
+	if (node == NULL)
+		return;
+	find_k_max(node->rchild, k);
+	count++;
+	if (count == k)
+		printf("%dth value : %d\n", k, node->data);
+	find_k_max(node->lchild, k);
+}
+
 int main(int argc, char *argv[])
 {
 	Tree tree;
@@ -123,6 +135,9 @@ int main(int argc, char *argv[])
 	insert_tree(&tree, 12);
 	insert_tree(&tree, 9);
 	insert_tree(&tree, 10);
+	
+	find_k_max(tree.root, 4);
+	
 	in_order_traverse_tree(tree.root);
 	Node *node = successor_tree(tree.root);
 	delete_tree(&tree, 6);
